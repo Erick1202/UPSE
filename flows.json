@@ -8,6 +8,76 @@
         "env": []
     },
     {
+        "id": "2dd3fd17cead505f",
+        "type": "tab",
+        "label": "Flujo 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6a90beea2dfc68a0",
+        "type": "mqtt-broker",
+        "name": "Broker",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "39d1f5ba96920e44",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "127.0.0.1",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
         "id": "2dee07f238dd120d",
         "type": "inject",
         "z": "eb7fd86a2f2b0b49",
@@ -96,6 +166,170 @@
         "wires": [
             [
                 "3c4b965ea2256bed"
+            ]
+        ]
+    },
+    {
+        "id": "322510db429a83b6",
+        "type": "mqtt in",
+        "z": "2dd3fd17cead505f",
+        "name": "",
+        "topic": "DumesHivemq",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "6a90beea2dfc68a0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 320,
+        "y": 340,
+        "wires": [
+            [
+                "a0eee94917e0092b"
+            ]
+        ]
+    },
+    {
+        "id": "a0eee94917e0092b",
+        "type": "debug",
+        "z": "2dd3fd17cead505f",
+        "name": "Mensajes",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e3d1487ec90a6979",
+        "type": "mqtt in",
+        "z": "2dd3fd17cead505f",
+        "name": "mqttIn",
+        "topic": "",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "39d1f5ba96920e44",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 1,
+        "x": 290,
+        "y": 420,
+        "wires": [
+            [
+                "a0eee94917e0092b"
+            ]
+        ]
+    },
+    {
+        "id": "eb261fd7b04688ba",
+        "type": "mqtt out",
+        "z": "2dd3fd17cead505f",
+        "name": "MqqtxOutt",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "39d1f5ba96920e44",
+        "x": 510,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ffdaeaa113651b06",
+        "type": "inject",
+        "z": "2dd3fd17cead505f",
+        "name": "Tema 1",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ErickDumas",
+        "payload": "{   \"temp\": 23.5,   \"hum\": 88,   \"lat\": -1.8312,   \"long\": -78.1834,   \"nombre\": \"hola Mundo\" }",
+        "payloadType": "jsonata",
+        "x": 230,
+        "y": 580,
+        "wires": [
+            [
+                "eb261fd7b04688ba"
+            ]
+        ]
+    },
+    {
+        "id": "4e16d7ec669c39e6",
+        "type": "inject",
+        "z": "2dd3fd17cead505f",
+        "name": "Tema 2",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "ErickDumes",
+        "payload": "{\"nombre\":\"hola Dumes\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 660,
+        "wires": [
+            [
+                "eb261fd7b04688ba"
+            ]
+        ]
+    },
+    {
+        "id": "360a0b4632260b56",
+        "type": "inject",
+        "z": "2dd3fd17cead505f",
+        "name": "Tema 3",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "EmilioConde",
+        "payload": "{\"nombre\":\"hola Milio\"}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 720,
+        "wires": [
+            [
+                "eb261fd7b04688ba"
             ]
         ]
     }
