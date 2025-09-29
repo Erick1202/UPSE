@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "803b866e4df60a7a",
+        "type": "tab",
+        "label": "HolaMundo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "6a90beea2dfc68a0",
         "type": "mqtt-broker",
         "name": "Broker",
@@ -76,6 +84,123 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
+    },
+    {
+        "id": "a05fa45fcc950e5c",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "0aa9193cec74ea87",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "b1618e297140fec7",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "a05fa45fcc950e5c",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "0aa9193cec74ea87",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "8d9f395e858a3091",
+        "type": "ui-group",
+        "name": "Temperatura",
+        "page": "b1618e297140fec7",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": true,
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "a2954dca96603ca4",
+        "type": "ui-group",
+        "name": "Humedad",
+        "page": "b1618e297140fec7",
+        "width": 6,
+        "height": 1,
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "b65680448015e415",
+        "type": "ui-group",
+        "name": "LED",
+        "page": "b1618e297140fec7",
+        "width": 3,
+        "height": 1,
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
     },
     {
         "id": "2dee07f238dd120d",
@@ -332,5 +457,265 @@
                 "eb261fd7b04688ba"
             ]
         ]
+    },
+    {
+        "id": "3a4b328b8cb6a56f",
+        "type": "ui-gauge",
+        "z": "803b866e4df60a7a",
+        "name": "Temperatura",
+        "group": "8d9f395e858a3091",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "20",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "38",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 790,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6e0fcdb06fd618a4",
+        "type": "change",
+        "z": "803b866e4df60a7a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temp",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 260,
+        "wires": [
+            [
+                "3a4b328b8cb6a56f"
+            ]
+        ]
+    },
+    {
+        "id": "a659d37f3b71dcff",
+        "type": "mqtt in",
+        "z": "803b866e4df60a7a",
+        "name": "Conexion Hivemq",
+        "topic": "Dumes",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "6a90beea2dfc68a0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "db6e10111e615bc3"
+            ]
+        ]
+    },
+    {
+        "id": "db6e10111e615bc3",
+        "type": "json",
+        "z": "803b866e4df60a7a",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "6e0fcdb06fd618a4",
+                "ff54aa4a65b5832f",
+                "b1cfb53c792df96f"
+            ]
+        ]
+    },
+    {
+        "id": "793fa52ff1929c43",
+        "type": "ui-gauge",
+        "z": "803b866e4df60a7a",
+        "name": "Humedad",
+        "group": "a2954dca96603ca4",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-battery",
+        "gstyle": "needle",
+        "title": "Temperatura",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "C",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "40",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "70",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 780,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ff54aa4a65b5832f",
+        "type": "change",
+        "z": "803b866e4df60a7a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hum",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 340,
+        "wires": [
+            [
+                "793fa52ff1929c43"
+            ]
+        ]
+    },
+    {
+        "id": "b1cfb53c792df96f",
+        "type": "change",
+        "z": "803b866e4df60a7a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.led",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "a1ac41df91fa6c7d"
+            ]
+        ]
+    },
+    {
+        "id": "a1ac41df91fa6c7d",
+        "type": "ui-led",
+        "z": "803b866e4df60a7a",
+        "name": "",
+        "group": "b65680448015e415",
+        "order": 1,
+        "width": 3,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "states": [
+            {
+                "value": "false",
+                "valueType": "bool",
+                "color": "#ff0000"
+            },
+            {
+                "value": "true",
+                "valueType": "bool",
+                "color": "#00ff00"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showBorder": true,
+        "showGlow": true,
+        "x": 770,
+        "y": 400,
+        "wires": []
     }
 ]
